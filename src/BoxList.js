@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import Box from "./Box";
+import NewBoxForm from "./NewBoxForm"
+
+
+
+
 class BoxList extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +17,11 @@ class BoxList extends Component {
     return (
       <div>
         <h1> Yo!</h1>
-        {boxes}
+        
+        <NewBoxForm /> 
+        
+    {boxes}
+      
       </div>
     );
   }
