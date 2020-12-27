@@ -1,21 +1,34 @@
 import React, { Component } from 'react';
-
+import { v4 as uuidv4 } from 'uuid';
 class NewBoxForm extends Component {
     constructor(props){
         super(props);
         this.state = { height: "", width: "", color: ""}; 
         this.handleChange = this.handleChange.bind(this); 
+        this.handleSubmit = this.handleSubmit.bind(this); 
     }
     handleChange(evt){
         this.setState({
             [evt.target.name]: evt.target.value
-        })
-
-    }
+            
+    });
+}
+// the new variable newBox maps state and adds the new id: in we pass it here. 
+    handleSubmit(evt){
+       evt.preventDefault(); 
+       const newBox = {...this.state , id: uuidv4()} 
+       this.props.createBox(newBox)
+       this.setState =( { 
+           height: "", 
+           width: "", 
+           color: ""
+        });
+        }; 
+    
     
     render(){
         return(
-          <form>
+          <form onSubmit = {this.handleSubmit}>
                
                <div> 
                    <label htmlFor ='height'>Height</label>
@@ -45,13 +58,15 @@ class NewBoxForm extends Component {
                    onChange = {this.handleChange} 
                    id ="height"/> 
                </div>
+               <button>Add New Box</button>
 
            </form>
 
            
-        )
+        ); 
     }
 }
+
 
 export default NewBoxForm; 
 
